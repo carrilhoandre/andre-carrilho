@@ -117,18 +117,6 @@ export const cases: Case[] = [
     stack: ["Checkout", "Microsserviços", "Kafka", "Resiliência"],
   },
   {
-    tag: "Omnichannel",
-    context: "Varejo · em andamento",
-    title: "Um checkout para o online e a loja física",
-    problem:
-      "Vendas online e de lojas físicas seguiam fluxos separados, duplicando regras e dificultando uma experiência única para o cliente.",
-    approach:
-      "Arquitetura do novo checkout pensada desde o início para receber o fluxo das lojas físicas, com contratos e domínios compartilhados.",
-    result:
-      "Base técnica para unificar canais de venda em um único fluxo de fechamento de compra.",
-    stack: ["DDD", "Arquitetura Hexagonal", "APIs REST"],
-  },
-  {
     tag: "Arquitetura",
     context: "Programa de fidelidade",
     title: "Backoffice de viagens white label do zero",
@@ -187,7 +175,7 @@ export const about = [
 export const focusAreas = [
   {
     title: "E-commerce e checkout",
-    text: "Carrinho e fechamento de compra, integrações com pagamento, antifraude e pedidos, e unificação dos canais online e loja física.",
+    text: "Carrinho e fechamento de compra, integrações com pagamento, antifraude e pedidos.",
   },
   {
     title: "Migração de legados",
@@ -214,7 +202,7 @@ export const ai = {
 };
 
 export const skillGroups: { name: string; items: string[] }[] = [
-  { name: "E-commerce", items: ["E-commerce", "Checkout", "Omnichannel", "Meios de Pagamento", "Gateways de Pagamento"] },
+  { name: "E-commerce", items: ["E-commerce", "Checkout", "Meios de Pagamento", "Gateways de Pagamento"] },
   { name: "Arquitetura", items: ["Arquitetura de Software", "Microsserviços", "DDD", "Arquitetura Hexagonal", "CQRS", "SOLID", "TDD", "Migração de Sistemas"] },
   { name: "Linguagens", items: [".NET / C#", "React", "Python", "Golang", "Node.js", "Next.js", "TypeScript"] },
   { name: "Dados e mensageria", items: ["SQL Server", "MongoDB", "Redis", "Kafka", "RabbitMQ"] },
