@@ -1,0 +1,5 @@
+# quebras de linha LF no repositório (o deploy roda em Linux)
+* text=auto eol=lf
+*.jpg binary
+*.png binary
+*.ico binary
