@@ -2,7 +2,7 @@ import { Nav } from "@/components/Nav";
 import { Skills } from "@/components/Skills";
 import {
   about, ai, cases, certifications, education, employers, focusAreas, jobs,
-  marquee, paymentFlow, profile, stats,
+  marquee, checkoutFlow, profile, services, stats,
 } from "@/content";
 
 function SectionTitle({ index, title, subtitle }: { index: string; title: string; subtitle?: string }) {
@@ -15,11 +15,11 @@ function SectionTitle({ index, title, subtitle }: { index: string; title: string
   );
 }
 
-function PaymentFlow() {
+function CheckoutFlow() {
   return (
     <div className="relative min-w-0 rounded-2xl border border-line bg-surface/80 p-5 backdrop-blur sm:p-6">
       <div className="flex items-center justify-between font-mono text-xs text-muted">
-        <span>fluxo de pagamento</span>
+        <span>fluxo de checkout</span>
         <span className="text-accent">● online</span>
       </div>
 
@@ -29,7 +29,7 @@ function PaymentFlow() {
           aria-hidden
           className="packet absolute left-[7px] size-[9px] rounded-full bg-accent shadow-[0_0_12px_var(--accent)]"
         />
-        {paymentFlow.map((step, i) => (
+        {checkoutFlow.map((step, i) => (
           <li key={step.title} className="relative">
             <span className="absolute -left-8 top-2.5 grid size-[23px] place-items-center rounded-full border border-line bg-bg font-mono text-[10px] text-muted">
               {i + 1}
@@ -43,8 +43,8 @@ function PaymentFlow() {
       </ol>
 
       <div className="mt-5 space-y-1 border-t border-line pt-4 font-mono text-[11px] text-muted">
-        <p><span className="text-accent">✓</span> aprovação · maximizada</p>
-        <p><span className="text-accent">✓</span> chargeback · prevenido</p>
+        <p><span className="text-accent">✓</span> conversão · em primeiro lugar</p>
+        <p><span className="text-accent">✓</span> integrações · resilientes</p>
         <p><span className="text-accent">✓</span> operação · sem parar</p>
       </div>
     </div>
@@ -191,11 +191,35 @@ function Cases() {
   );
 }
 
+function Services() {
+  return (
+    <section id="servicos" className="border-t border-line">
+      <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <SectionTitle index="02" title="Serviços" subtitle={services.intro} />
+          <a href="#contato" className="mb-10 rounded-lg bg-accent px-5 py-2.5 font-medium text-bg transition hover:brightness-110">
+            Falar comigo
+          </a>
+        </div>
+        <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {services.items.map((s, i) => (
+            <li key={s.title} className="group rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-accent/50">
+              <p className="font-mono text-xs text-accent">{String(i).padStart(2, "0")}</p>
+              <h3 className="mt-2 font-display text-lg font-semibold">{s.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted">{s.text}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  );
+}
+
 function About() {
   return (
     <section id="sobre" className="border-t border-line bg-surface/40">
       <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
-        <SectionTitle index="02" title="Sobre" />
+        <SectionTitle index="03" title="Sobre" />
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[1.2fr_1fr]">
           <div className="space-y-5 text-lg leading-relaxed text-text/90">
             {about.map((p) => <p key={p}>{p}</p>)}
@@ -204,7 +228,7 @@ function About() {
               <li>◎ {profile.languages}</li>
             </ul>
           </div>
-          <PaymentFlow />
+          <CheckoutFlow />
         </div>
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -234,7 +258,7 @@ function About() {
 function Experience() {
   return (
     <section id="trajetoria" className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
-      <SectionTitle index="04" title="Trajetória" />
+      <SectionTitle index="05" title="Trajetória" />
       <ol className="relative space-y-3 border-l border-line pl-6">
         {jobs.map((j, i) => (
           <li key={j.period + j.company} className="relative">
@@ -296,7 +320,7 @@ function Contact() {
   return (
     <section id="contato" className="border-t border-line">
       <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
-        <SectionTitle index="05" title="Vamos conversar?" subtitle="Aberto a oportunidades de liderança técnica e arquitetura, especialmente em pagamentos, fintech e e-commerce." />
+        <SectionTitle index="06" title="Vamos conversar?" subtitle="Aberto a oportunidades de liderança técnica e arquitetura, e a projetos de consultoria e mentoria." />
         <ul className="grid gap-4 sm:grid-cols-3">
           {links.map((l) => (
             <li key={l.label}>
@@ -324,9 +348,10 @@ export default function Home() {
         <Hero />
         <Marquee />
         <Cases />
+        <Services />
         <About />
         <section id="habilidades" className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
-          <SectionTitle index="03" title="Habilidades" subtitle="Filtre por área." />
+          <SectionTitle index="04" title="Habilidades" subtitle="Filtre por área." />
           <Skills />
         </section>
         <Experience />

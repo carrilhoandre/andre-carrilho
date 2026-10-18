@@ -7,9 +7,9 @@ export const profile = {
   shortName: "André Carrilho",
   initials: "AC",
   role: "Tech Lead & Arquiteto de Software",
-  headline: "Tech Lead e arquiteto de software, especialista em pagamentos.",
+  headline: "Tech Lead e arquiteto de software, especialista em e-commerce.",
   summary:
-    "Há mais de 15 anos transformo sistemas legados em arquiteturas modernas e escaláveis. Lidero times, desenho microsserviços e integro meios de pagamento com foco em taxa de aprovação, prevenção de chargeback e operação que não pode parar.",
+    "Há mais de 15 anos transformo sistemas legados em arquiteturas modernas e escaláveis. Lidero times, desenho microsserviços e evoluo fluxos de checkout com foco em conversão, resiliência e operação que não pode parar.",
   highlights: [".NET", "React", "Python", "Golang", "Microsserviços", "Kubernetes", "Kafka", "Engenharia assistida por IA"],
   status: "Aberto a oportunidades · GMT-3",
   location: "Tupi Paulista, São Paulo, Brasil",
@@ -32,19 +32,20 @@ export const stats = [
 
 export const nav = [
   { href: "#cases", label: "Cases" },
+  { href: "#servicos", label: "Serviços" },
   { href: "#sobre", label: "Sobre" },
   { href: "#habilidades", label: "Habilidades" },
   { href: "#trajetoria", label: "Trajetória" },
   { href: "#contato", label: "Contato" },
 ];
 
-export const paymentFlow = [
+export const checkoutFlow = [
+  { title: "Carrinho", detail: "itens · frete" },
   { title: "Checkout", detail: "microsserviços" },
-  { title: "Zero dollar auth", detail: "valida o cartão" },
+  { title: "Pagamento", detail: "integração entre squads" },
   { title: "Antifraude", detail: "análise de risco" },
-  { title: "3D Secure", detail: "liability shift · frictionless" },
-  { title: "PSP / Adquirente", detail: "Adyen · Cybersource" },
-  { title: "Eventos", detail: "Kafka · conciliação" },
+  { title: "Pedido", detail: "criação · confirmação" },
+  { title: "Eventos", detail: "Kafka" },
 ];
 
 export const employers = [
@@ -63,8 +64,8 @@ export const employers = [
 export const marquee = [
   ".NET", "C#", "React", "Python", "Golang", "Node.js", "Next.js", "Azure", "AWS",
   "Kubernetes", "Kafka", "RabbitMQ", "SQL Server", "MongoDB", "Redis",
-  "DDD", "CQRS", "Arquitetura Hexagonal", "TDD", "Adyen", "Cybersource",
-  "3D Secure", "Agentes de IA",
+  "DDD", "CQRS", "Arquitetura Hexagonal", "TDD", "E-commerce", "Checkout",
+  "Agentes de IA",
 ];
 
 export type Case = {
@@ -92,16 +93,28 @@ export const cases: Case[] = [
     stack: [".NET", "Microsserviços", "Kafka", "Kubernetes", "DDD"],
   },
   {
-    tag: "Pagamentos",
-    context: "Grupo Casas Bahia",
-    title: "Aprovação alta, chargeback baixo",
+    tag: "Regras de negócio",
+    context: "Grupo Casas Bahia · e-commerce",
+    title: "Migração do motor de descontos do legado",
     problem:
-      "Cada transação negada é venda perdida; cada fraude aprovada vira chargeback. O equilíbrio entre conversão e risco precisa ser desenhado na arquitetura.",
+      "As regras de desconto viviam no legado e combinavam muitas variáveis: cupons, campanhas por origem de tráfego (UTM), forma de pagamento, BIN do cartão e perfil do cliente. Um erro ali vira preço errado no pedido.",
     approach:
-      "Integrações com Adyen e Cybersource, 3D Secure com liability shift e fluxo frictionless, e autorização zero dollar para validar cartões sem cobrar o cliente.",
+      "Migração do contexto de descontos para um domínio próprio, mapeando cada regra e as combinações entre elas, com foco em manter o mesmo comportamento do legado durante a transição.",
     result:
-      "Mecanismos de prevenção de chargeback no fluxo de pagamento, com foco em taxa de aprovação e menos atrito para o cliente.",
-    stack: ["Adyen", "Cybersource", "3DS", "Zero dollar auth"],
+      "Regras de desconto isoladas em um contexto próprio, mais fáceis de entender, testar e evoluir.",
+    stack: [".NET", "DDD", "Microsserviços", "Regras de negócio"],
+  },
+  {
+    tag: "Checkout",
+    context: "Grupo Casas Bahia",
+    title: "Fechamento de compra sem atrito",
+    problem:
+      "O checkout é o ponto em que carrinho, pagamento, antifraude e pedido se encontram. Qualquer falha ou lentidão ali vira venda perdida.",
+    approach:
+      "Desenho das integrações do checkout com os serviços de outras squads, como pagamentos e antifraude, conhecendo as regras de negócio de cada etapa e tratando falhas de forma resiliente.",
+    result:
+      "Fluxo de fechamento de compra mais confiável e preparado para evoluir junto com os times parceiros.",
+    stack: ["Checkout", "Microsserviços", "Kafka", "Resiliência"],
   },
   {
     tag: "Omnichannel",
@@ -128,18 +141,6 @@ export const cases: Case[] = [
     stack: [".NET Core", "CQRS", "AWS ECS/Fargate", "Docker", "Redis"],
   },
   {
-    tag: "Fintech",
-    context: "Setor financeiro",
-    title: "Internet banking em ambiente regulado",
-    problem:
-      "Evoluir um internet banking com novas funcionalidades sem abrir mão de estabilidade e segurança.",
-    approach:
-      "Desenvolvimento de features e apoio a demandas de DevOps, com automação de build e deploy.",
-    result:
-      "Entregas contínuas em um produto financeiro crítico e de alta exigência.",
-    stack: [".NET", "SQL Server", "CI/CD"],
-  },
-  {
     tag: "Consultoria",
     context: "Consultoria · cliente internacional",
     title: "Plataforma de leilão online",
@@ -152,6 +153,32 @@ export const cases: Case[] = [
   },
 ];
 
+export const services = {
+  intro: "Consultoria e mentoria remotas, por projeto ou por hora. Fale comigo para entender escopo e valores.",
+  items: [
+    {
+      title: "Mentoria técnica",
+      text: "Para devs que querem chegar a sênior, tech lead ou arquiteto: carreira, arquitetura de software, system design e preparação para entrevistas.",
+    },
+    {
+      title: "Arquitetura de e-commerce",
+      text: "Desenho e evolução de checkout, carrinho e fechamento de pedido, com integrações resilientes entre pagamento, antifraude e logística.",
+    },
+    {
+      title: "Migração de sistemas legados",
+      text: "Plano e execução da modernização de sistemas em produção, de monólitos a microsserviços, de forma incremental e sem parar a operação.",
+    },
+    {
+      title: "Arquitetura e revisão técnica",
+      text: "Revisão de arquitetura, desenho de microsserviços com DDD e mensageria, e recomendações práticas de escalabilidade e resiliência.",
+    },
+    {
+      title: "IA no time de engenharia",
+      text: "Adoção de agentes de IA e assistentes de código com contexto do projeto, padrões do time e revisão humana no fluxo.",
+    },
+  ],
+};
+
 export const about = [
   "Sou Tech Lead e arquiteto de software, com mais de 15 anos de carreira. Hoje lidero a modernização de uma plataforma de e-commerce de grande porte, incluindo a migração do checkout legado, e atuo em salas de guerra quando um problema crítico afeta a venda.",
   "Ao longo da carreira, atuei em varejo, bancos, investimentos, programas de fidelidade, certificados digitais e consultoria própria para clientes no Brasil e no exterior. O fio condutor é o mesmo: sistemas que lidam com dinheiro e não podem parar.",
@@ -159,8 +186,8 @@ export const about = [
 
 export const focusAreas = [
   {
-    title: "Pagamentos e e-commerce",
-    text: "Checkout, integração com PSPs e adquirentes, 3D Secure, autorização zero dollar, prevenção de chargeback e taxa de aprovação.",
+    title: "E-commerce e checkout",
+    text: "Carrinho e fechamento de compra, integrações com pagamento, antifraude e pedidos, e unificação dos canais online e loja física.",
   },
   {
     title: "Migração de legados",
@@ -187,7 +214,7 @@ export const ai = {
 };
 
 export const skillGroups: { name: string; items: string[] }[] = [
-  { name: "Pagamentos e e-commerce", items: ["Meios de Pagamento", "E-commerce", "Gateways de Pagamento", "Adyen", "Cybersource", "3D Secure", "Zero dollar auth", "Prevenção de chargeback"] },
+  { name: "E-commerce", items: ["E-commerce", "Checkout", "Omnichannel", "Meios de Pagamento", "Gateways de Pagamento"] },
   { name: "Arquitetura", items: ["Arquitetura de Software", "Microsserviços", "DDD", "Arquitetura Hexagonal", "CQRS", "SOLID", "TDD", "Migração de Sistemas"] },
   { name: "Linguagens", items: [".NET / C#", "React", "Python", "Golang", "Node.js", "Next.js", "TypeScript"] },
   { name: "Dados e mensageria", items: ["SQL Server", "MongoDB", "Redis", "Kafka", "RabbitMQ"] },
@@ -210,7 +237,7 @@ export const jobs: Job[] = [
     role: "Tech Lead · Especialista .NET",
     company: "Grupo Casas Bahia · São Paulo",
     text: "Squad de plataforma de e-commerce focada em modernização de arquitetura e atuação em salas de guerra. Lidero a migração do checkout legado, que no futuro próximo vai unificar o fluxo do e-commerce com o das lojas físicas.",
-    stack: [".NET", "Golang", "Kafka", "Kubernetes", "Adyen", "Cybersource"],
+    stack: [".NET", "Golang", "Kafka", "Kubernetes"],
   },
   {
     period: "mai 2021 – out 2021",
